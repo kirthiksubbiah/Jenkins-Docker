@@ -7,12 +7,11 @@ pipeline {
         DOCKER_CREDENTIALS_ID = "93c470a0-e8fe-425c-8f55-932aae8919d4" 
         CONTAINER_NAME = "mycontainer11"
         CONTAINER_NAME1 = "mycontainer12"
-
     }
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/kirthiksubbiah/Jenkins-Docker.git'
+                git branch: 'main', url: 'https://github.com/kirthiksubbiah/Jenkins-Docker.git'
             }
         }
         stage('Docker Login') {
