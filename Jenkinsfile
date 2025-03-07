@@ -62,7 +62,6 @@ withCredentials([usernamePassword(credentialsId: 'docker-credentials-id', userna
 
 
 
-}
 
                 }
             }
