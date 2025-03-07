@@ -54,11 +54,12 @@ pipeline{
         stage('Deploy to server') {
             steps {
                 script {
-withCredentials([usernamePassword(credentialsId: '93c470a0-e8fe-425c-8f55-932aae8919d4', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-sh '''
-echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-docker pull kirthiksubbiah/my-jenkins-app:latest
-'''
+withCredentials([usernamePassword(credentialsId: 'docker-credentials-id', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+    sh '''
+    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+    '''
+}
+
 
 
 }
