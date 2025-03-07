@@ -70,15 +70,17 @@ pipeline {
             steps {
                 script {
                     echo "Deploying Docker image to remote server..."
-                    sshpass -p "root" ssh -o StrictHostKeyChecking=no master@192.168.203.128 '''
-                    docker pull ${DOCKER_REPO}:${DOCKER_TAG} &&
-                    docker ps -q --filter name=${CONTAINER_NAME1} | xargs -r docker stop || true &&
-                    docker ps -q --filter name=${CONTAINER_NAME1} | xargs -r docker rm || true &&
-                    docker run -d -p 80:80 --name ${CONTAINER_NAME1} ${DOCKER_REPO}:${DOCKER_TAG}
-                    '''
+                    sh """
+                    sshpass -p 'root' ssh -o StrictHostKeyChecking=no master@192.168.203.128 \\
+                    'docker pull ${DOCKER_REPO}:${DOCKER_TAG} && \\
+                    docker ps -q --filter name=${CONTAINER_NAME1} | xargs -r docker stop || true && \\
+                    docker ps -q --filter name=${CONTAINER_NAME1} | xargs -r docker rm || true && \\
+                    docker run -d -p 80:80 --name ${CONTAINER_NAME1} ${DOCKER_REPO}:${DOCKER_TAG}'
+                    """
                     echo "Deployment completed."
+                    }
                 }
             }
-        }
+
     }
 }
