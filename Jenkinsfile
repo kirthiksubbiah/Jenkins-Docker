@@ -5,8 +5,8 @@ pipeline {
         DOCKER_TAG = "latest"
         DOCKER_REPO = "kirthiksubbiah/my-jenkins-app"
         DOCKER_CREDENTIALS_ID = "93c470a0-e8fe-425c-8f55-932aae8919d4"
-        CONTAINER_NAME = "mycontainer13"
-        CONTAINER_NAME1 = "mycontainer14"
+        CONTAINER_NAME = "mycontainer15"
+        CONTAINER_NAME1 = "mycontainer16"
     }
     stages {
         stage('Clone Repository') {
@@ -39,7 +39,7 @@ pipeline {
                         docker ps -q --filter name=${CONTAINER_NAME} | xargs -r docker rm || true
 
                         # Run new container
-                        docker run -d -p 8096:80 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        docker run -d -p 8097:80 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
                     """
                 }
             }
