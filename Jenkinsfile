@@ -1,7 +1,7 @@
 pipeline{
 	agent any
 	environment{
-		DOCKER_IMAGE = "KirthikSubbiah/my-jenkins-app"
+		DOCKER_IMAGE = "kirthiksubbiah/my-jenkins-app"
 		DOCKER_CREDENTIALS_ID = "docker-hub-credentialsss"
 
 	}
@@ -57,7 +57,7 @@ pipeline{
 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentialsss', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
 sh '''
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-docker pull KirthikSubbiah/my-jenkins-app:latest
+docker pull kirthiksubbiah/my-jenkins-app:latest
 '''
 
 
